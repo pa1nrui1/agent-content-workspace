@@ -198,11 +198,13 @@ predictions/
 
 本项目同步以下第三方开源 Skill 源码，并保留原许可证和来源说明。
 
-| Skill | 来源 | 用途 |
-|---|---|---|
-| `frontend-slides` | `zarazhangrui/frontend-slides` | HTML 幻灯片、视频辅助画面、流程演示、复杂概念可视化 |
-| `cheat-on-content` | `XBuilderLAB/cheat-on-content` | 内容评分、发布前预测、发布后复盘、规则迭代 |
-| `baoyu-skills` | `JimLiu/baoyu-skills` | 图文图片卡片、信息图、内容生成相关 Skill |
+特别感谢这些开源项目的作者和维护者。本项目的视觉生产、内容预测、发布复盘和图文卡片能力，受益于他们已经公开沉淀的 Skill、脚本和方法。
+
+| Skill | 来源 | 致谢 | 用途 |
+|---|---|---|---|
+| `frontend-slides` | `zarazhangrui/frontend-slides` | 感谢作者开源 HTML 幻灯片与视觉演示工作流 | HTML 幻灯片、视频辅助画面、流程演示、复杂概念可视化 |
+| `cheat-on-content` | `XBuilderLAB/cheat-on-content` | 感谢作者开源内容预测、评分和复盘工作流 | 内容评分、发布前预测、发布后复盘、规则迭代 |
+| `baoyu-skills` | `JimLiu/baoyu-skills` | 感谢宝玉开源 Skill 集合，尤其是图文图片生成相关能力 | 图文图片卡片、信息图、内容生成相关 Skill |
 
 源码位置：
 

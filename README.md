@@ -62,6 +62,26 @@ cp config/privacy-rules.template.md config/privacy-rules.md
 8. `config/privacy-rules.md`
 9. `Learning.md`
 
+## 首次使用
+
+第一次使用时，不需要先理解所有目录。
+
+你只需要让 Agent 先问第一个问题：
+
+```text
+你的创作者身份是什么？
+```
+
+你回答后，Agent 会把答案整理进配置文件，再继续问下一个问题：
+
+```text
+你的受众是谁？
+```
+
+然后再按顺序继续问你：你有什么样的内容想法、准备在哪些平台发布、每个平台希望怎么写、喜欢什么文风、视觉素材怎么处理、哪些信息不能公开、是否要开启外部样本文风学习。
+
+你已经有清晰想法时，可以直接回答。你暂时说不清楚时，可以提供同类型优秀账号、文章、视频或主页链接，让 Agent 帮你总结定位、内容主线、平台规则、文风偏好、视觉规则和隐私边界。
+
 ## 工作流
 
 ```text
@@ -78,6 +98,43 @@ cp config/privacy-rules.template.md config/privacy-rules.md
 -> 更新 Learning
 ```
 
+## 外部样本采集与文风学习
+
+本项目支持把微信公众号、X / Twitter、小红书、抖音链接保存为文风学习样本。
+
+首次使用前安装和检查依赖：
+
+```bash
+bash scripts/setup-capture.sh
+```
+
+采集链接：
+
+```bash
+node scripts/capture-source.mjs "<链接>"
+```
+
+| 平台 | 动作 |
+|---|---|
+| 微信公众号 | 调用 `skills/wechat-article-capture` 保存文章和图片，再生成文风卡 |
+| X / Twitter | 打开浏览器，必要时等待用户登录，保存公开内容，再生成文风卡 |
+| 小红书 | 打开浏览器，必要时等待用户登录，保存公开内容和截图，再生成文风卡 |
+| 抖音 | 浏览器拦截 MP4 请求，下载 MP4，用 FFmpeg 转音频，再用 whisper.cpp 或本地转写工具转文字，最后生成视频文风卡 |
+
+抖音不默认使用 `yt-dlp`。抖音固定走下载视频路径：浏览器打开链接，捕获 `douyinvod.com` 或 `video_mp4` 媒体请求，下载 MP4，转音频，再转写。
+
+视频转文字需要配置其中一种方式：设置 `WHISPER_MODEL` / `WHISPER_CPP_MODEL` 指向本地 whisper.cpp 模型，或安装 `faster-whisper`。
+
+真实原文、截图、视频、音频和完整转写默认保存在本地忽略目录，不提交到公开仓库。
+
+验证采集流程：
+
+```bash
+npm run test:capture
+```
+
+这个测试会使用本地临时页面验证微信公众号、X / Twitter、小红书和抖音四条路径，包括浏览器打开、MP4 下载、FFmpeg 转音频和转写文件生成。
+
 ## 目录结构
 
 ```text
@@ -90,6 +147,7 @@ agent-content-workspace/
   hooks/
   platforms/
   privacy/
+  skills/
   third-party/
 ```
 
@@ -101,6 +159,7 @@ agent-content-workspace/
 | `hooks/` | Agent 在关键节点必须执行的检查规则 |
 | `platforms/` | 抽象平台 A/B/C 的工作目录 |
 | `privacy/` | 隐私脱敏和发布前扫描说明 |
+| `skills/` | 本项目同步的自有或授权 Skill 源码 |
 | `third-party/` | 第三方 Skill 源码、致谢和同步规则 |
 | `scripts/` | 初始化和隐私扫描脚本 |
 
@@ -160,6 +219,17 @@ agent-content-workspace/
 | `templates/style-card.md` | 把外部样本整理成文风卡 |
 | `templates/skill-card.md` | 记录第三方 Skill 的用途和许可证 |
 
+### 执行脚本
+
+| 脚本 | 用途 |
+|---|---|
+| `scripts/init-workspace.sh` | 初始化工作区并提示首次配置问题 |
+| `scripts/capture-source.mjs` | 采集微信公众号、X / Twitter、小红书和抖音链接 |
+| `scripts/setup-capture.sh` | 安装和检查外部样本采集依赖 |
+| `scripts/check-capture-deps.sh` | 检查浏览器、FFmpeg 和转写工具 |
+| `scripts/test-capture-workflow.sh` | 本地验证四个平台采集、浏览器、MP4 下载和转写流程 |
+| `scripts/privacy-scan.sh` | 隐私扫描 |
+
 ### 工作流钩子
 
 用于规定 Agent 在关键节点必须做什么。
@@ -209,6 +279,7 @@ predictions/
 | `frontend-slides` | `zarazhangrui/frontend-slides` | 感谢作者开源 HTML 幻灯片与视觉演示工作流 | HTML 幻灯片、视频辅助画面、流程演示、复杂概念可视化 |
 | `cheat-on-content` | `XBuilderLAB/cheat-on-content` | 感谢作者开源内容预测、评分和复盘工作流 | 内容评分、发布前预测、发布后复盘、规则迭代 |
 | `baoyu-skills` | `JimLiu/baoyu-skills` | 感谢宝玉开源 Skill 集合，尤其是图文图片生成相关能力 | 图文图片卡片、信息图、内容生成相关 Skill |
+| `wechat-article-capture` | 杨卫薪律师（微信 ywxlaw） | 感谢杨卫薪律师开源微信公众号文章抓取能力 | 微信公众号文章抓取、图片下载和 Markdown 保存 |
 
 源码位置：
 
@@ -216,9 +287,28 @@ predictions/
 third-party/skills/frontend-slides/
 third-party/skills/cheat-on-content/
 third-party/skills/baoyu-skills/
+skills/wechat-article-capture/
 ```
 
 第三方 Skill 的版权归原作者所有。同步、修改和再分发时应遵守 `third-party/sync-policy.md`。
+
+## 第三方工具源码
+
+本项目同步以下工具源码，用于外部样本采集和视频转文字。它们保留各自原许可证，不归入本项目 MIT 授权范围。
+
+| 工具 | 来源 | 许可证 | 用途 |
+|---|---|---|---|
+| FFmpeg | `https://ffmpeg.org/` | LGPL / GPL，以源码目录内许可证为准 | MP4 转音频 |
+| whisper.cpp | `https://github.com/ggml-org/whisper.cpp` | MIT | 本地语音转文字 |
+| Playwright | `https://github.com/microsoft/playwright` | Apache-2.0 | 浏览器打开、登录等待、页面采集和媒体请求拦截 |
+
+源码位置：
+
+```text
+third-party/tools/ffmpeg/
+third-party/tools/whisper.cpp/
+third-party/tools/playwright/
+```
 
 ## 使用示例
 
@@ -279,6 +369,7 @@ PRIVACY_EXTRA_PATTERN="姓名A|账号A|机构A|项目A" bash scripts/privacy-sca
 - 平台后台数据、真实表现数据、未发布草稿。
 - token、cookie、secret、auth、API key。
 - 未授权文章、图片、视频和文风样本原文。
+- 下载的视频、提取的音频、完整转写、浏览器登录态和 cookie。
 
 所有真实信息应使用占位符：
 
@@ -297,4 +388,4 @@ PRIVACY_EXTRA_PATTERN="姓名A|账号A|机构A|项目A" bash scripts/privacy-sca
 
 本项目自有模板和方法论文档使用 MIT License。
 
-第三方目录中的 Skill 保留原项目许可证和版权声明。
+`skills/wechat-article-capture/`、`third-party/skills/` 和 `third-party/tools/` 保留原项目许可证和版权声明。

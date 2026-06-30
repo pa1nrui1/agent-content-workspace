@@ -23,4 +23,32 @@
 - 用途：图文平台图片卡片、封面图、知识卡、流程图和多图内容生成。
 - 致谢：感谢宝玉开源 `baoyu-skills`，尤其是图文图片生成相关 Skill，为本项目的图文视觉生产层提供了直接参考。
 
+## wechat-article-capture
+
+- 来源：杨卫薪律师开源微信公众号文章抓取 Skill
+- 许可证：MIT
+- 用途：微信公众号文章抓取、图片下载和 Markdown 保存。
+- 致谢：感谢杨卫薪律师（微信 ywxlaw）开源微信公众号文章抓取能力。
+
+## FFmpeg
+
+- 来源：https://ffmpeg.org/
+- 许可证：LGPL / GPL，具体以 `third-party/tools/ffmpeg/` 内许可证文件为准。
+- 用途：将 MP4 视频转换为音频文件。
+- 致谢：感谢 FFmpeg 项目提供稳定的音视频处理能力。
+
+## whisper.cpp
+
+- 来源：https://github.com/ggml-org/whisper.cpp
+- 许可证：MIT
+- 用途：本地语音转文字。
+- 致谢：感谢 ggml-org/whisper.cpp 提供本地转写能力。
+
+## Playwright
+
+- 来源：https://github.com/microsoft/playwright
+- 许可证：Apache-2.0
+- 用途：浏览器打开、登录等待、页面采集和媒体请求拦截。
+- 致谢：感谢 Microsoft Playwright 提供浏览器自动化能力。
+
 同步第三方 Skill 时，应保留原项目 LICENSE、原作者信息、来源链接和本地修改说明。

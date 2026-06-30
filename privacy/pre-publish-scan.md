@@ -34,6 +34,19 @@ PRIVACY_EXTRA_PATTERN="姓名A|账号A|机构A|项目A" bash scripts/privacy-sca
 - examples
 - third-party NOTICE
 
+同时确认以下路径没有被提交：
+
+- `samples/style-sources/`
+- `samples/style-cards/`
+- `captures/`
+- `downloads/`
+- `media/`
+- `audio/`
+- `transcripts/`
+- `.auth/`
+- `.capture-browser-profile/`
+- `browser-profile/`
+
 ## 注意事项
 
 扫描只能发现显性风险，不能替代人工判断。

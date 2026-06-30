@@ -20,10 +20,11 @@ RG_BASE=(
   --glob '!scripts/privacy-scan.sh'
 )
 
-RG_FIRST_PARTY=("${RG_BASE[@]}" --glob '!third-party/skills/**')
+RG_FIRST_PARTY=("${RG_BASE[@]}" --glob '!third-party/skills/**' --glob '!third-party/tools/**')
 
 if [[ "$INCLUDE_THIRD_PARTY" -eq 0 ]]; then
   RG_BASE+=(--glob '!third-party/skills/**')
+  RG_BASE+=(--glob '!third-party/tools/**')
 fi
 
 failures=0
@@ -74,7 +75,7 @@ echo "Privacy scan root: $ROOT_DIR"
 if [[ "$INCLUDE_THIRD_PARTY" -eq 1 ]]; then
   echo "Mode: include third-party source"
 else
-  echo "Mode: first-party files only. Use --include-third-party to scan vendored skills too."
+  echo "Mode: first-party files only. Use --include-third-party to scan vendored skills and tools too."
 fi
 echo
 
@@ -95,7 +96,10 @@ scan_warning_only "Credential assignment-like text" '(token|secret|api[_-]?key|a
 scan_warning_only "Generic sensitive terms for manual review" '真实姓名|手机号|身份证|客户|当事人|案号|token|secret|cookie|auth|Authorization'
 
 echo "== File name check =="
-if find . -path './third-party/skills/*' -prune -o -type f -print | perl -ne 'print if /[^\x00-\x7F]/' | grep .; then
+if find . \
+  -path './third-party/skills/*' -prune -o \
+  -path './third-party/tools/*' -prune -o \
+  -type f -print | perl -ne 'print if /[^\x00-\x7F]/' | grep .; then
   failures=$((failures + 1))
   echo
 else

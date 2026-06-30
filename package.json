@@ -1,0 +1,14 @@
+{
+  "name": "agent-content-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node scripts/capture-source.mjs",
+    "check:capture": "bash scripts/check-capture-deps.sh",
+    "test:capture": "bash scripts/test-capture-workflow.sh"
+  },
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}

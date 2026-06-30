@@ -4,6 +4,16 @@
 
 一套面向创作者的 Agent 内容生产工作区模板，用配置文件、方法论、检查模板、工作流钩子、Learning 机制和第三方 Skill 协作，把自媒体内容生产整理成可执行、可复盘、可持续迭代的流程。
 
+## 关于作者
+
+潘睿律师 - 热衷于将 AI 技术应用于法律实务。
+
+个人官网：[https://www.panrui.xyz/](https://www.panrui.xyz/)
+
+欢迎添加微信交流（请注明来意）：
+
+<img src="assets/wechat-qr.png" alt="潘睿律师微信二维码" width="260">
+
 ## 前置要求
 
 - 能够使用本地文件夹管理内容工作区。
@@ -276,16 +286,6 @@ PRIVACY_EXTRA_PATTERN="姓名A|账号A|机构A|项目A" bash scripts/privacy-sca
 <SkillA>
 <隐私信息>
 ```
-
-## 关于作者
-
-潘睿律师 - 热衷于将 AI 技术应用于法律实务。
-
-个人官网：[https://www.panrui.xyz/](https://www.panrui.xyz/)
-
-欢迎添加微信交流（请注明来意）：
-
-<img src="assets/wechat-qr.png" alt="潘睿律师微信二维码" width="260">
 
 ## License
 

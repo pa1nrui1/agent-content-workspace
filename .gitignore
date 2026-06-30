@@ -1,0 +1,32 @@
+.DS_Store
+.env
+.env.*
+.auth/
+.venv/
+venv/
+node_modules/
+dist/
+build/
+*.log
+
+.cheat-state.json
+.cheat-cache/
+.cheat-hooks/
+.claude/
+.debug/
+
+# Private materials
+**/private/
+**/raw/
+**/real-data/
+**/真实数据/
+**/真实素材/
+**/未脱敏/
+
+# Optional generated assets
+**/*.mp3
+**/*.wav
+**/*.mp4
+**/*.mov
+**/*.zip
+

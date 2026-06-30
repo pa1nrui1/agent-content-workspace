@@ -10,6 +10,10 @@
 
 个人官网：[https://www.panrui.xyz/](https://www.panrui.xyz/)
 
+官网项目页：[agent-content-workspace](https://www.panrui.xyz/projects/agent-content-workspace/)
+
+项目解读文章：[agent-content-workspace：给内容创作者的 Agent 工作区](https://www.panrui.xyz/writing/agent-content-workspace/)
+
 欢迎添加微信交流（请注明来意）：
 
 <img src="assets/wechat-qr.png" alt="潘睿律师微信二维码" width="260">

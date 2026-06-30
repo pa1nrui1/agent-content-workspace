@@ -9,7 +9,7 @@
 - 能够使用本地文件夹管理内容工作区。
 - 能够使用支持读取项目文件的 Agent，例如 Codex、Claude Code 或其他本地编码 Agent。
 - 理解本项目采用抽象平台命名：`platform-a`、`platform-b`、`platform-c`。
-- 开源前愿意执行隐私检查，不把真实身份、账号、客户、后台数据和未脱敏素材提交到公开仓库。
+- 开源前愿意执行隐私检查，不把未经明确确认公开的真实身份、账号、客户、后台数据和未脱敏素材提交到公开仓库。
 
 ## 快速开始
 
@@ -256,7 +256,7 @@ bash scripts/privacy-scan.sh --include-third-party
 PRIVACY_EXTRA_PATTERN="姓名A|账号A|机构A|项目A" bash scripts/privacy-scan.sh
 ```
 
-默认不得公开：
+除项目作者明确选择公开的信息外，默认不得公开：
 
 - 真实姓名、账号、电话、邮箱、地址。
 - 客户、当事人、案号、合同、聊天记录。
@@ -276,6 +276,16 @@ PRIVACY_EXTRA_PATTERN="姓名A|账号A|机构A|项目A" bash scripts/privacy-sca
 <SkillA>
 <隐私信息>
 ```
+
+## 关于作者
+
+潘睿律师 - 热衷于将 AI 技术应用于法律实务。
+
+个人官网：[https://www.panrui.xyz/](https://www.panrui.xyz/)
+
+欢迎添加微信交流（请注明来意）：
+
+<img src="assets/wechat-qr.png" alt="潘睿律师微信二维码" width="260">
 
 ## License
 

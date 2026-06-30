@@ -20,7 +20,6 @@ const options = {
   cardRoot: path.resolve(ROOT_DIR, readOption('--cards') || 'samples/style-cards'),
   headless: args.includes('--headless'),
   waitMs: Number(readOption('--wait-ms') || 12000),
-  fixtureTitle: readOption('--fixture-title') || '',
 };
 
 if (!url || args.includes('--help')) {
@@ -66,7 +65,7 @@ function readOption(name) {
 
 function readPositionalArgs() {
   const values = [];
-  const optionsWithValue = new Set(['--platform', '--wait-ms', '--output', '--cards', '--fixture-title']);
+  const optionsWithValue = new Set(['--platform', '--wait-ms', '--output', '--cards']);
 
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
@@ -114,7 +113,7 @@ async function captureWechat(rawUrl, runDir) {
   const metadata = {
     platform: '微信公众号',
     url: rawUrl,
-    title: options.fixtureTitle || path.basename(outputPath, '.md'),
+    title: path.basename(outputPath, '.md'),
     sourcePath: outputPath,
     captureMethod: 'skills/wechat-article-capture',
     rawMaterial: 'article markdown',
@@ -159,7 +158,7 @@ async function captureBrowserText(rawUrl, runDir, platformName, extra = {}) {
     const metadata = {
       platform: platformName === 'twitter' ? 'X / Twitter' : '小红书',
       url: rawUrl,
-      title: options.fixtureTitle || data.title,
+      title: data.title,
       description: data.metaDescription,
       sourcePath: textPath,
       screenshotPath,
@@ -231,7 +230,7 @@ async function captureDouyin(rawUrl, runDir) {
     const metadata = {
       platform: '抖音',
       url: rawUrl,
-      title: options.fixtureTitle || pageInfo.title,
+      title: pageInfo.title,
       sourcePath: infoPath,
       mp4Path,
       audioPath: wavPath,

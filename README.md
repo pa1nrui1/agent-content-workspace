@@ -119,21 +119,11 @@ node scripts/capture-source.mjs "<链接>"
 | 微信公众号 | 调用 `skills/wechat-article-capture` 保存文章和图片，再生成文风卡 |
 | X / Twitter | 打开浏览器，必要时等待用户登录，保存公开内容，再生成文风卡 |
 | 小红书 | 打开浏览器，必要时等待用户登录，保存公开内容和截图，再生成文风卡 |
-| 抖音 | 浏览器拦截 MP4 请求，下载 MP4，用 FFmpeg 转音频，再用 whisper.cpp 或本地转写工具转文字，最后生成视频文风卡 |
-
-抖音不默认使用 `yt-dlp`。抖音固定走下载视频路径：浏览器打开链接，捕获 `douyinvod.com` 或 `video_mp4` 媒体请求，下载 MP4，转音频，再转写。
+| 抖音 | 保存视频内容，用 FFmpeg 转音频，再用 whisper.cpp 或本地转写工具转文字，最后生成视频文风卡 |
 
 视频转文字需要配置其中一种方式：设置 `WHISPER_MODEL` / `WHISPER_CPP_MODEL` 指向本地 whisper.cpp 模型，或安装 `faster-whisper`。
 
 真实原文、截图、视频、音频和完整转写默认保存在本地忽略目录，不提交到公开仓库。
-
-验证采集流程：
-
-```bash
-npm run test:capture
-```
-
-这个测试会使用本地临时页面验证微信公众号、X / Twitter、小红书和抖音四条路径，包括浏览器打开、MP4 下载、FFmpeg 转音频和转写文件生成。
 
 ## 目录结构
 
@@ -227,7 +217,6 @@ agent-content-workspace/
 | `scripts/capture-source.mjs` | 采集微信公众号、X / Twitter、小红书和抖音链接 |
 | `scripts/setup-capture.sh` | 安装和检查外部样本采集依赖 |
 | `scripts/check-capture-deps.sh` | 检查浏览器、FFmpeg 和转写工具 |
-| `scripts/test-capture-workflow.sh` | 本地验证四个平台采集、浏览器、MP4 下载和转写流程 |
 | `scripts/privacy-scan.sh` | 隐私扫描 |
 
 ### 工作流钩子
@@ -300,7 +289,7 @@ skills/wechat-article-capture/
 |---|---|---|---|
 | FFmpeg | `https://ffmpeg.org/` | LGPL / GPL，以源码目录内许可证为准 | MP4 转音频 |
 | whisper.cpp | `https://github.com/ggml-org/whisper.cpp` | MIT | 本地语音转文字 |
-| Playwright | `https://github.com/microsoft/playwright` | Apache-2.0 | 浏览器打开、登录等待、页面采集和媒体请求拦截 |
+| Playwright | `https://github.com/microsoft/playwright` | Apache-2.0 | 浏览器打开、登录等待和页面采集 |
 
 源码位置：
 

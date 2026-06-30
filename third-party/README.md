@@ -22,7 +22,7 @@
 - `baoyu-skills / baoyu-xhs-images`：图文平台图片卡片、封面图、知识卡、流程图和多图内容生成。
 - `FFmpeg`：MP4 转音频。
 - `whisper.cpp`：本地语音转文字。
-- `Playwright`：浏览器自动化和媒体请求捕获。
+- `Playwright`：浏览器自动化和页面采集。
 
 源码位置：
 

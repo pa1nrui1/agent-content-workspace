@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "capture": "node scripts/capture-source.mjs",
-    "check:capture": "bash scripts/check-capture-deps.sh",
-    "test:capture": "bash scripts/test-capture-workflow.sh"
+    "check:capture": "bash scripts/check-capture-deps.sh"
   },
   "dependencies": {
     "playwright": "^1.60.0"

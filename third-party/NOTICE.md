@@ -41,7 +41,7 @@
 
 - 来源：https://github.com/microsoft/playwright
 - 许可证：Apache-2.0
-- 用途：浏览器打开、登录等待、页面采集和媒体请求拦截。
+- 用途：浏览器打开、登录等待和页面采集。
 - 致谢：感谢 Microsoft Playwright 提供浏览器自动化能力。
 
 以上第三方 Skill 的版权归原作者所有。本仓库仅在其许可证允许范围内进行集成、引用或同步。

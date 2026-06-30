@@ -8,7 +8,7 @@
 |---|---|---|---|
 | FFmpeg | https://ffmpeg.org/ | LGPL / GPL，见 `ffmpeg/COPYING*` | 将下载的 MP4 转为音频 |
 | whisper.cpp | https://github.com/ggml-org/whisper.cpp | MIT，见 `whisper.cpp/LICENSE` | 本地语音转文字 |
-| Playwright | https://github.com/microsoft/playwright | Apache-2.0，见 `playwright/LICENSE` | 浏览器自动化和媒体请求捕获 |
+| Playwright | https://github.com/microsoft/playwright | Apache-2.0，见 `playwright/LICENSE` | 浏览器自动化和页面采集 |
 
 运行时仍使用用户本机安装的工具：
 
